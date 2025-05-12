@@ -25,7 +25,7 @@
             ]
         }
     },
-    "initializeCommand": ["initialize"],
+    "initializeCommand": [".devcontainer/initialize"],
     "postCreateCommand": "for tool in .devcontainer/post_create/*.sh;do bash ${tool};done",
     "mounts": [
         "source=${env:HOME}${env:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",

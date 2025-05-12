@@ -1,0 +1,38 @@
+{
+    "name": "Debian Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/base:debian",
+    "features": {
+        "ghcr.io/devcontainers/features/aws-cli:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/git-lfs:1": {},
+        "ghcr.io/devcontainers-extra/features/sops:1": {},
+        "ghcr.io/devcontainers-extra/features/terraform-docs:1": {},
+        "ghcr.io/guiyomh/features/just:0": {},
+        "ghcr.io/jsburckhardt/devcontainer-features/uv:1": {},
+        "ghcr.io/tomharvey/devcontainer-features/aws-sso-util:1": {}        
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "files.eol": "\n"
+            },
+            "extensions": [
+                "AmazonWebServices.aws-toolkit-service",
+                "hashicorp.terraform",
+                "mads-hartmann.bash-ide-vscode",
+                "ms-python.python"
+            ]
+        }
+    },
+    "initializeCommand": [".devcontainer/initialize"],
+    "postCreateCommand": "for tool in .devcontainer/post_create/*.sh;do bash ${tool};done",
+    "mounts": [
+        "source=${env:HOME}${env:USERPROFILE}/.aws,target=/home/vscode/.aws,type=bind",
+        "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind"
+    ],
+    "containerUser": "vscode",
+    "containerEnv": {
+        "TENV_AUTO_INSTALL": "1"
+    }
+}
